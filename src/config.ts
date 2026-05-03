@@ -43,8 +43,13 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "GitHub",
 			icon: "line-md:github-loop",
-			url: "https://github.com/hauntedfail/"
-		}
+			url: "https://github.com/hauntedfail/",
+		},
+		{
+			name: "Telegram",
+			icon: "line-md:telegram",
+			url: "https://t.me/unittype",
+		},
 	],
 };
 
@@ -55,10 +60,10 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const giscusConfig: GiscusConfig = {
-	repo: "hauntedfail/blogue",
-	repoId: "",
+	repo: "JohnTitor/www.2k36.org",
+	repoId: "R_kgDOK1-0Eg",
 	category: "Announcements",
-	categoryId: "",
+	categoryId: "DIC_kwDOK1-0Es4CrgZf",
 	mapping: "title",
 	reactionsEnabled: true,
 	inputPosition: "top",
