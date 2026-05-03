@@ -12,8 +12,8 @@ export async function GET(context: APIContext): Promise<Response> {
 
 	return rss({
 		title: siteConfig.title,
-		description: "A personal blog and portfolio of Yuki Okushi.",
-		site: context.site ?? "https://www.2k36.org",
+		description: "A personal blog and portfolio of Hikaru.",
+		site: context.site ?? "https://haunted.fail",
 		items: blog.map((post) => {
 			const content = typeof post.body === "string" ? post.body : String(post.body || "");
 

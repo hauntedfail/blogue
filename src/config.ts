@@ -8,7 +8,7 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "2k36",
+	title: "haunted.fail",
 	lang: "ja",
 	themeColor: {
 		hue: 270,
@@ -27,29 +27,24 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.webp",
-	name: "Yuki Okushi",
-	bio: "Japanese codewriting ninja",
+	name: "Hikaru",
+	bio: "For offensive purpose only",
 	links: [
 		{
 			name: "GitHub",
 			icon: "line-md:github-loop",
-			url: "https://github.com/JohnTitor",
-		},
-		{
-			name: "Bluesky",
-			icon: "line-md:bluesky",
-			url: "https://bsky.app/profile/2k36.org",
-		},
-		{
-			name: "LinkedIn",
-			icon: "line-md:linkedin",
-			url: "https://www.linkedin.com/in/jtitor/",
+			url: "https://github.com/nonnil",
 		},
 		{
 			name: "Email",
 			icon: "line-md:email",
-			url: "mailto:huyuumi.dev@gmail.com",
+			url: "mailto:supp@haunted.fail",
 		},
+		{
+			name: "GitHub",
+			icon: "line-md:github-loop",
+			url: "https://github.com/hauntedfail/"
+		}
 	],
 };
 
@@ -60,10 +55,10 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const giscusConfig: GiscusConfig = {
-	repo: "JohnTitor/www.2k36.org",
-	repoId: "R_kgDOK1-0Eg",
+	repo: "hauntedfail/blogue",
+	repoId: "",
 	category: "Announcements",
-	categoryId: "DIC_kwDOK1-0Es4CrgZf",
+	categoryId: "",
 	mapping: "title",
 	reactionsEnabled: true,
 	inputPosition: "top",
