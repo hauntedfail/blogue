@@ -51,7 +51,7 @@ function hidePanel() {
 			<Icon icon="material-symbols:language-japanese-kana" class="text-[1.25rem]" />
 		</div>
 		<div class="absolute" class:opacity-0={locale !== "en"}>
-			<Icon icon="material-symbols:language-us" class="text-[1.25rem]" />
+			<Icon icon="material-symbols:language-gb-english" class="text-[1.25rem]" />
 		</div>
 	</button>
 
@@ -68,7 +68,7 @@ function hidePanel() {
 					class:current-theme-btn={locale === "en"}
 					onclick={() => switchLocale("en")}
 			>
-				<Icon icon="material-symbols:language-us" class="text-[1.25rem] mr-3" />
+				<Icon icon="material-symbols:language-gb-english" class="text-[1.25rem] mr-3" />
 				English
 			</button>
 		</div>

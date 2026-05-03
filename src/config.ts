@@ -37,7 +37,7 @@ export const profileConfig: ProfileConfig = {
 		},
 		{
 			name: "Email",
-			icon: "line-md:email",
+			icon: "line-md:email-twotone",
 			url: "mailto:supp@haunted.fail",
 		},
 		{
