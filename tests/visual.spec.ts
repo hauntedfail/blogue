@@ -25,7 +25,7 @@ test.describe("Visual Regression Tests", () => {
 	});
 
 	test("blog post screenshot", async ({ page }) => {
-		await page.goto("/posts/state-of-2024/", { waitUntil: "networkidle" });
+		await page.goto("/posts/2026-05-04-haunted-fail/", { waitUntil: "networkidle" });
 		await page.waitForFunction(() => document.fonts.ready, { timeout: 10000 });
 		await page.waitForTimeout(5000);
 		await expect(page).toHaveScreenshot("blog-post.png", { timeout: 30000 });
