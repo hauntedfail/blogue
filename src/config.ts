@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
 	title: "haunted.fail",
 	lang: "ja",
 	themeColor: {
-		hue: 270,
+		hue: 20,
 		fixed: true,
 	},
 	toc: {

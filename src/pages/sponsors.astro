@@ -1,6 +1,18 @@
 ---
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import sponsors from "../../sponsors.json";
+import sponsorsData from "../../sponsors.json";
+
+type Sponsor = {
+	username: string;
+	name: string;
+	profilePicUrl: string;
+	tier: {
+		name: string;
+		monthlyPriceInDollars: number;
+	};
+};
+
+const sponsors = sponsorsData as Sponsor[];
 
 // Group sponsors by tier amount
 const sponsorsByTier = sponsors.reduce(
