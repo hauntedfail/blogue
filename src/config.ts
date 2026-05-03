@@ -60,10 +60,10 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const giscusConfig: GiscusConfig = {
-	repo: "JohnTitor/www.2k36.org",
-	repoId: "R_kgDOK1-0Eg",
+	repo: "hauntedfail/blogue",
+	repoId: "R_kgDOSTV26w",
 	category: "Announcements",
-	categoryId: "DIC_kwDOK1-0Es4CrgZf",
+	categoryId: "DIC_kwDOSTV2684C8RM-",
 	mapping: "title",
 	reactionsEnabled: true,
 	inputPosition: "top",
