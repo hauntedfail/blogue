@@ -1,6 +1,14 @@
 import { type CollectionEntry, getCollection } from "astro:content";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { createCanvas, GlobalFonts, type SKRSContext2D } from "@napi-rs/canvas";
+import {
+	createCanvas,
+	GlobalFonts,
+	loadImage,
+	type Image,
+	type SKRSContext2D,
+} from "@napi-rs/canvas";
 import type { APIRoute, GetStaticPaths } from "astro";
 import { siteConfig } from "@/config";
 import { formatDateToYYYYMMDD } from "@/utils/date-utils";
@@ -17,7 +25,9 @@ const TITLE_LINE_HEIGHT = 1.25;
 const FONT_FAMILY = "IPAGothic";
 
 const fontPath = fileURLToPath(new URL("../../assets/og/fonts/ipag.ttf", import.meta.url));
+const backgroundPath = path.join(process.cwd(), "src/assets/og/fonts/bg.png");
 GlobalFonts.registerFromPath(fontPath, FONT_FAMILY);
+const backgroundImagePromise = loadImage(readFileSync(backgroundPath));
 
 function normalizeTitle(title: string): string {
 	return title.replace(/\s+/g, " ").trim();
@@ -128,31 +138,20 @@ function layoutTitle(
 	return { lines, fontSize };
 }
 
-function drawBackground(ctx: SKRSContext2D): void {
-	const gradient = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
-	gradient.addColorStop(0, "#0b1120");
-	gradient.addColorStop(1, "#0f172a");
-	ctx.fillStyle = gradient;
-	ctx.fillRect(0, 0, WIDTH, HEIGHT);
+function drawCoverImage(ctx: SKRSContext2D, image: Image): void {
+	const scale = Math.max(WIDTH / image.width, HEIGHT / image.height);
+	const drawWidth = image.width * scale;
+	const drawHeight = image.height * scale;
+	const drawX = (WIDTH - drawWidth) / 2;
+	const drawY = (HEIGHT - drawHeight) / 2;
+	ctx.drawImage(image, drawX, drawY, drawWidth, drawHeight);
+}
 
-	const glow = ctx.createRadialGradient(
-		WIDTH * 0.85,
-		-HEIGHT * 0.2,
-		20,
-		WIDTH * 0.85,
-		-HEIGHT * 0.2,
-		WIDTH * 0.75,
-	);
-	glow.addColorStop(0, "rgba(45, 212, 191, 0.35)");
-	glow.addColorStop(1, "rgba(45, 212, 191, 0)");
-	ctx.fillStyle = glow;
-	ctx.fillRect(0, 0, WIDTH, HEIGHT);
+function drawBackground(ctx: SKRSContext2D, image: Image): void {
+	drawCoverImage(ctx, image);
 
-	const accentGradient = ctx.createLinearGradient(0, 120, 0, 520);
-	accentGradient.addColorStop(0, "#22d3ee");
-	accentGradient.addColorStop(1, "#38bdf8");
-	ctx.fillStyle = accentGradient;
-	ctx.fillRect(PADDING_X - 20, 120, 6, 400);
+	ctx.fillStyle = "rgba(0, 0, 0, 0.45)";
+	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 }
 
 function drawMeta(ctx: SKRSContext2D, published: string): void {
@@ -214,8 +213,9 @@ export const GET: APIRoute = async ({ params, props }) => {
 	const canvas = createCanvas(WIDTH, HEIGHT);
 	const ctx = canvas.getContext("2d");
 	ctx.textBaseline = "top";
+	const backgroundImage = await backgroundImagePromise;
 
-	drawBackground(ctx);
+	drawBackground(ctx, backgroundImage);
 	drawMeta(ctx, published);
 	drawTitle(ctx, title);
 
