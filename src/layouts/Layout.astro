@@ -7,6 +7,8 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
+	BANNER_HEIGHT,
+	BANNER_HEIGHT_EXTEND,
 	DARK_MODE,
 	DEFAULT_THEME,
 	LIGHT_MODE,
@@ -15,26 +17,35 @@ import {
 import { defaultFavicons } from "../constants/icon";
 import { setI18nLocale } from "../i18n/translation";
 import type { Favicon } from "../types/config";
-import { url } from "../utils/url-utils";
+import { pathsEqual, url } from "../utils/url-utils";
 
 interface Props {
 	title?: string;
+	banner?: string;
 	description?: string;
 	lang?: string;
 	setOGTypeArticle?: boolean;
 	ogImage?: string;
 }
 
-let { title, description, lang, setOGTypeArticle, ogImage } = Astro.props;
+let { title, banner, description, lang, setOGTypeArticle, ogImage } = Astro.props;
 
 const urlLocale =
 	Astro.url.pathname.startsWith("/en/") || Astro.url.pathname === "/en"
 		? "en"
 		: "ja";
+const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 
 // defines global css variables
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
 const configHue = siteConfig.themeColor.hue;
+if (!banner || typeof banner !== "string" || banner.trim() === "") {
+	banner = siteConfig.banner.src;
+}
+const enableBanner = siteConfig.banner.enable;
+const bannerHeight = siteConfig.banner.height ?? BANNER_HEIGHT;
+const bannerHeightExtend = siteConfig.banner.extendHeight ?? BANNER_HEIGHT_EXTEND;
+const bannerHeightHome = bannerHeight + bannerHeightExtend;
 
 let pageTitle: string;
 if (title) {
@@ -52,6 +63,14 @@ if (!lang) {
 }
 setI18nLocale(lang);
 const siteLang = lang.replace("_", "-");
+
+const bannerOffsetByPosition = {
+	top: `${bannerHeightExtend}vh`,
+	center: `${bannerHeightExtend / 2}vh`,
+	bottom: "0",
+};
+const bannerOffset =
+	bannerOffsetByPosition[siteConfig.banner.position || "center"];
 ---
 
 <!DOCTYPE html>
@@ -152,7 +171,7 @@ const siteLang = lang.replace("_", "-");
 
 		<SpeedInsights />
 	</head>
-	<body class=" min-h-screen transition " data-overlayscrollbars-initialize
+	<body class=" min-h-screen transition " class:list={[{"is-home": isHomePage, "enable-banner": enableBanner}]} data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
@@ -161,9 +180,47 @@ const siteLang = lang.replace("_", "-");
 	</body>
 </html>
 
-<style is:global>
+<style is:global define:vars={{
+	bannerOffset,
+	"banner-height-extend": `${bannerHeightExtend}vh`,
+	"banner-height-home": `${bannerHeightHome}vh`,
+	"banner-height": `${bannerHeight}vh`,
+}}>
 @reference "../styles/main.css";
 @layer components {
+	.enable-banner.is-home #banner-wrapper {
+		height: var(--banner-height-home);
+		transform: translateY(var(--banner-height-extend));
+	}
+
+	.enable-banner #banner-wrapper {
+		height: var(--banner-height-home);
+	}
+
+	.enable-banner.is-home #banner {
+		height: var(--banner-height-home);
+		transform: translateY(0);
+	}
+
+	.enable-banner #banner {
+		height: var(--banner-height-home);
+		transform: translateY(var(--bannerOffset));
+	}
+
+	.enable-banner.is-home #main-grid {
+		transform: translateY(var(--banner-height-extend));
+	}
+
+	.enable-banner #top-row {
+		height: calc(var(--banner-height-home) - 4.5rem);
+		transition-property: all;
+		transition-duration: 300ms;
+	}
+
+	.enable-banner.is-home #sidebar-sticky {
+		top: calc(1rem - var(--banner-height-extend));
+	}
+
 	.navbar-hidden {
 		@apply opacity-0 -translate-y-16
 	}
@@ -246,6 +303,12 @@ function loadHue() {
 	setHue(getHue())
 }
 
+function showBanner() {
+	const banner = document.getElementById('banner');
+	if (!banner) return;
+	banner.classList.remove('opacity-0', 'scale-105');
+}
+
 async function initCustomScrollbar() {
 	const bodyElement = document.querySelector('body');
 	if (!bodyElement) return;
@@ -273,6 +336,7 @@ async function initCustomScrollbar() {
 function init() {
 	loadTheme();
 	loadHue();
+	showBanner();
 	
 	// Defer scrollbar initialization until after page is fully loaded
 	if (document.readyState === 'complete') {
@@ -310,6 +374,7 @@ const setup = () => {
 		}
 	});
 	window.swup.hooks.on('page:view', () => {
+		showBanner();
 		// hide the temp high element when the transition is done
 		const heightExtend = document.getElementById('page-height-extend')
 		if (heightExtend) {

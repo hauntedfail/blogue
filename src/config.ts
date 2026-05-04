@@ -14,6 +14,18 @@ export const siteConfig: SiteConfig = {
 		hue: 20,
 		fixed: true,
 	},
+	banner: {
+		enable: false,
+		src: "assets/images/banner.png",
+		height: 60,
+		extendHeight: 30,
+		position: "center",
+		credit: {
+			enable: false,
+			text: "",
+			url: "",
+		},
+	},
 	toc: {
 		enable: true,
 		depth: 2,
