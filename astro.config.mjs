@@ -26,7 +26,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://haunted.fail",
+	site: "https://blogue.haunted.fail",
 	base: "/",
 	trailingSlash: "always",
 	i18n: {
