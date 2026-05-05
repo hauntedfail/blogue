@@ -1,6 +1,5 @@
 ---
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import LiquidGlassSurface from "@components/misc/LiquidGlassSurface.svelte";
 import sponsorsData from "../../sponsors.json";
 
 type Sponsor = {
@@ -36,7 +35,7 @@ const sortedTierAmounts = Object.keys(sponsorsByTier)
 
 <MainGridLayout title="Sponsors" description="Thank you to all my sponsors!">
 	<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-		<LiquidGlassSurface class="z-10 px-9 py-6 relative w-full">
+		<div class="card-base z-10 px-9 py-6 relative w-full">
 			<h1 class="text-4xl font-bold mb-6 dark:text-neutral-50 ">Sponsors</h1>
 			<p class="text-lg mb-6 opacity-80 dark:text-neutral-50 ">
 				Thank you to all my wonderful sponsors! Your support means a lot.
@@ -66,7 +65,7 @@ const sortedTierAmounts = Object.keys(sponsorsByTier)
 									href={`https://github.com/${sponsor.username}`}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="group btn-liquid flex items-center gap-4 p-4 rounded-lg transition"
+									class="group flex items-center gap-4 p-4 rounded-lg hover:bg-(--btn-plain-bg-hover) active:bg-(--btn-plain-bg-active) transition"
 								>
 									<img
 										src={sponsor.profilePicUrl}
@@ -84,6 +83,6 @@ const sortedTierAmounts = Object.keys(sponsorsByTier)
 					</div>
 				);
 			})}
-		</LiquidGlassSurface>
+		</div>
 	</div>
 </MainGridLayout>
