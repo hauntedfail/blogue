@@ -15,7 +15,7 @@ export const siteConfig: SiteConfig = {
 		fixed: true,
 	},
 	banner: {
-		enable: false,
+		enable: true,
 		src: "assets/images/banner.png",
 		height: 60,
 		extendHeight: 30,

@@ -1,5 +1,6 @@
 <script lang="ts">
 import Icon from "@iconify/svelte";
+import LiquidGlassButton from "./misc/LiquidGlassButton.svelte";
 import { getCurrentLocale, getLocalizedUrl } from "@utils/url-utils.ts";
 import { onMount } from "svelte";
 
@@ -46,14 +47,14 @@ function hidePanel() {
 </script>
 
 <div class="relative z-50" role="menu" tabindex="-1" onmouseleave={hidePanel}>
-	<button aria-label="Language" role="menuitem" type="button" class="relative btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90" id="lang-switch" onclick={toggleLocale} onmouseenter={showPanel}>
+	<LiquidGlassButton ariaLabel="Language" class="relative flex items-center justify-center scale-animation rounded-lg h-11 w-11 active:scale-90 text-black/75 hover:text-[var(--primary)] dark:text-white/75 dark:hover:text-[var(--primary)]" id="lang-switch" onclick={toggleLocale} onmouseenter={showPanel}>
 		<div class="absolute" class:opacity-0={locale !== "ja"}>
 			<Icon icon="material-symbols:language-japanese-kana" class="text-[1.25rem]" />
 		</div>
 		<div class="absolute" class:opacity-0={locale !== "en"}>
 			<Icon icon="material-symbols:language-gb-english" class="text-[1.25rem]" />
 		</div>
-	</button>
+	</LiquidGlassButton>
 
 	<div id="lang-panel" class="hidden lg:block absolute transition float-panel-closed top-11 -right-2 pt-5">
 		<div class="card-base float-panel p-2">

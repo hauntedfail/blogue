@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./liquid-glass.css";
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
@@ -10,11 +11,19 @@
 }
 
 @utility card-base {
-	@apply rounded-(--radius-large) overflow-hidden bg-(--card-bg) transition;
+	@apply rounded-(--radius-large) overflow-hidden transition;
+	position: relative;
+	isolation: isolate;
 }
 
 @utility card-shadow {
 	@apply drop-shadow-[0_2px_4px_rgba(0,0,0,0.005)];
+}
+
+@utility liquid-interactive {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
 }
 
 @utility expand-animation {
@@ -31,7 +40,7 @@
 }
 
 @utility float-panel {
-	@apply top-21 rounded-(--radius-large) overflow-hidden bg-(--float-panel-bg) transition shadow-xl dark:shadow-none;
+	@apply top-21 rounded-(--radius-large) overflow-hidden card-base transition shadow-xl dark:shadow-none;
 }
 
 @utility float-panel-closed {
@@ -45,11 +54,14 @@
 }
 
 @utility btn-card {
-	@apply transition flex items-center justify-center bg-(--card-bg) hover:bg-(--btn-card-bg-hover)
-        active:bg-(--btn-card-bg-active);
+	@apply transition flex items-center justify-center liquid-interactive;
 	&.disabled {
 		@apply pointer-events-none text-black/10 dark:text-white/10;
 	}
+}
+
+@utility btn-liquid {
+	@apply liquid-interactive;
 }
 
 @utility disabled {
@@ -59,21 +71,21 @@
 }
 
 @utility btn-plain {
-	@apply transition relative flex items-center justify-center bg-none
+	@apply transition relative flex items-center justify-center liquid-interactive
         text-black/75 hover:text-(--primary) dark:text-white/75 dark:hover:text-(--primary);
 	&:not(.scale-animation) {
-		@apply hover:bg-(--btn-plain-bg-hover) active:bg-(--btn-plain-bg-active);
+		@apply active:scale-95;
 	}
 	&.scale-animation {
-		@apply expand-animation;
+		@apply active:scale-95;
 		&.current-theme-btn {
-			@apply before:scale-100 before:opacity-100 before:bg-(--btn-plain-bg-hover) text-(--primary);
+			@apply text-(--primary);
 		}
 	}
 }
 
 @utility btn-regular {
-	@apply transition flex items-center justify-center bg-(--btn-regular-bg) hover:bg-(--btn-regular-bg-hover) active:bg-(--btn-regular-bg-active)
+	@apply transition flex items-center justify-center liquid-interactive active:scale-95
         text-(--btn-content) dark:text-white/75;
 }
 
@@ -130,8 +142,7 @@
 
 @utility btn-regular-dark {
 	@apply flex items-center justify-center
-        bg-[oklch(0.45_0.01_var(--hue))] hover:bg-[oklch(0.50_0.01_var(--hue))] active:bg-[oklch(0.55_0.01_var(--hue))]
-        dark:bg-[oklch(0.30_0.02_var(--hue))] dark:hover:bg-[oklch(0.35_0.03_var(--hue))] dark:active:bg-[oklch(0.40_0.03_var(--hue))];
+        liquid-interactive;
 	&.success {
 		@apply bg-[oklch(0.75_0.14_var(--hue))] dark:bg-[oklch(0.75_0.14_var(--hue))];
 	}

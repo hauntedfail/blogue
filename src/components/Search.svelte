@@ -5,6 +5,7 @@ import Icon from "@iconify/svelte";
 import { url } from "@utils/url-utils.ts";
 import { onMount } from "svelte";
 import type { SearchResult } from "@/global";
+import LiquidGlassButton from "./misc/LiquidGlassButton.svelte";
 
 let keywordDesktop = "";
 let keywordMobile = "";
@@ -175,10 +176,10 @@ $: if (initialized && keywordMobile) {
 </div>
 
 <!-- toggle btn for phone/tablet view -->
-<button on:click={togglePanel} aria-label="Search Panel" id="search-switch"
-        class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90">
+<LiquidGlassButton onclick={togglePanel} ariaLabel="Search Panel" id="search-switch"
+        class="flex items-center justify-center scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90 text-black/75 hover:text-[var(--primary)] dark:text-white/75 dark:hover:text-[var(--primary)]">
     <Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
-</button>
+</LiquidGlassButton>
 
 <!-- search panel -->
 <div id="search-panel" class="float-panel float-panel-closed search-panel absolute md:w-[30rem]
@@ -199,8 +200,8 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
     <!-- search results -->
     {#each result as item}
         <a href={item.url}
-           class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block
-       rounded-xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]">
+           class="btn-liquid transition first-of-type:mt-2 lg:first-of-type:mt-0 group block
+       rounded-xl text-lg px-3 py-2">
             <div class="transition text-90 inline-flex font-bold group-hover:text-[var(--primary)]">
                 {item.meta.title}<Icon icon="material-symbols:chevron-right-rounded" class="transition text-[0.75rem] translate-x-1 my-auto text-[var(--primary)]"></Icon>
             </div>

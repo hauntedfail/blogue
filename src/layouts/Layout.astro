@@ -3,6 +3,7 @@ import "@fontsource-variable/noto-sans-jp";
 import "@fontsource-variable/jetbrains-mono";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
+import LiquidGlassDefs from "@components/misc/LiquidGlassDefs.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
@@ -174,6 +175,7 @@ const bannerOffset =
 	<body class=" min-h-screen transition " class:list={[{"is-home": isHomePage, "enable-banner": enableBanner}]} data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
+		<LiquidGlassDefs />
 		<slot />
 
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
