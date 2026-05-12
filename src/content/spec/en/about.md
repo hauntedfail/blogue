@@ -11,17 +11,6 @@ For contact, email [supp@haunted.fail](mailto:supp@haunted.fail).
 
 - Faculty of Environment and Information Studies, Keio University
 
-## Career History
-
-| Period            | Company / Organization | Position                | Role   |
-| ----------------- | ---------------------- | ----------------------- | ------ |
-| 2026-05 / Current | ???                    | ???                     | ???    |
-| 2025-08 / Current | 早應AI                 | Senior Engineer         | Member |
-| 2025-06 / 2025-08 | ???                    | Infrastructure Engineer | Member |
-| 2024-10 / 2025-03 | Super Hamster          | Fullstack Engineer      | Member |
-| 2024-04 / 2024-10 | ???                    | Sales                   | Member |
-| 2024-02 / 2024-06 | KAI-YOU                | Fullstack Engineer      | Member |
-
 ## Talks
 
 - [Analyzing IQOS BLE communication and capturing BLE traffic on macOS | 129th Yurui Security Conference]()

@@ -11,17 +11,6 @@ GitHubでは[nonnil](https://github.com/nonnil)として活動していて、成
 
 - 慶應義塾大学環境情報学部
 
-## 経歴
-
-| 期間              | 企業・組織         | ポジション              | ロール |
-| ----------------- | ------------------ | ----------------------- | ------ |
-| 2026-05 / Current | ???                | ???                     | ???    |
-| 2025-08 / Current | 早應AI             | Senior Engineer         | Member |
-| 2025-06 / 2025-08 | ???                | Infrastructure Engineer | Member |
-| 2024-10 / 2025-03 | スーパーハムスター | Fullstack Engineer      | Member |
-| 2024-04 / 2024-10 | ???                | Sales                   | Member |
-| 2024-02 / 2024-06 | KAI-YOU            | Fullstack Engineer      | Member |
-
 ## 登壇
 
 - [IQOSのBLE通信の解析およびmacOSにおけるBLE通信のCapture手法 | 第129回ゆるいセキュリティ大会]()
