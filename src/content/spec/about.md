@@ -13,7 +13,7 @@ GitHubでは[nonnil](https://github.com/nonnil)として活動していて、成
 
 ## 登壇
 
-- [IQOSのBLE通信の解析およびmacOSにおけるBLE通信のCapture手法 | 第129回ゆるいセキュリティ大会]()
+- [IQOSのBLE通信の解析およびmacOSにおけるBLE通信のCapture手法 | 第129回ゆるいセキュリティ大会](https://blogue.haunted.fail/posts/2026-05-06-iqos-ble-communication/)
 
 ## Links
 

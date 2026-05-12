@@ -13,7 +13,7 @@ For contact, email [supp@haunted.fail](mailto:supp@haunted.fail).
 
 ## Talks
 
-- [Analyzing IQOS BLE communication and capturing BLE traffic on macOS | 129th Yurui Security Conference]()
+- [Analyzing IQOS BLE communication and capturing BLE traffic on macOS | 129th Yurui Security Conference](https://blogue.haunted.fail/posts/2026-05-06-iqos-ble-communication/)
 
 ## Links
 
